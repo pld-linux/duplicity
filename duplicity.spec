@@ -2,6 +2,7 @@
 %include        /usr/lib/rpm/macros.python
 
 Summary:	Untrusted/encrypted backup using rsync algorithm
+Summary(pl):	Wykonywanie szyfrowanych kopii zapasowych przy u¿yciu algorytmu rsync
 Name:		duplicity
 Version:	0.4.0
 Release:	1
@@ -26,6 +27,18 @@ uses librsync, the incremental archives are space efficient and only
 record the parts of files that have changed since the last backup.
 Currently duplicity supports deleted files, full unix permissions,
 directories, symbolic links, fifos, etc., but not hard links.
+
+%description -l pl
+Duplicity wykonuje przyrostowe kopie zapasowe plików i katalogów
+poprzez szyfrowanie archiwów w formacie tar przy pomocy GnuPG i
+przesy³anie ich na zdalny (lub lokalny) serwer plików. W teorii mo¿na
+u¿yæ wiele zdalnych backendów; aktualnie napisane s± tylko backendy
+lokalny oraz ssh/scp. Poniewa¿ duplicity u¿ywa librsync, przyrostowe
+archiwa wydajnie wykorzystuj± miejsce dziêki zapisywaniu tylko tych
+czê¶ci plików, które zmieni³y siê od wykonywania poprzedniej kopii.
+Aktualnie duplicity obs³uguje pliki skasowane, pe³ny uniksowy system
+uprawnieñ, katalogi, dowi±zania symboliczne, nazwane potoki itp. - ale
+nie twarde dowi±zania.
 
 %prep
 %setup -q
