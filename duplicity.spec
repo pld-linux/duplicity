@@ -9,6 +9,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	http://savannah.nongnu.org/download/duplicity/%{name}-%{version}.tar.gz
+# Source0-md5:	c2dfc0b3ab52de1ed7254775cbc62ef2
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	librsync-devel
 BuildRequires:	python-devel >= 2.2.1
