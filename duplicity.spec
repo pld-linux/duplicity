@@ -1,5 +1,4 @@
 
-%include        /usr/lib/rpm/macros.python
 
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl):	Wykonywanie szyfrowanych kopii zapasowych przy u¿yciu algorytmu rsync
