@@ -1,5 +1,3 @@
-
-
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl):	Wykonywanie szyfrowanych kopii zapasowych przy u¿yciu algorytmu rsync
 Name:		duplicity
@@ -59,4 +57,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*.1*
 %dir %{py_sitedir}/duplicity
 %{py_sitedir}/duplicity/*.py[co]
-%{py_sitedir}/duplicity/*.so
+%attr(755,root,root) %{py_sitedir}/duplicity/*.so
