@@ -1,5 +1,5 @@
 Summary:	Untrusted/encrypted backup using rsync algorithm
-Summary(pl.UTF-8):   Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
+Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
 Version:	0.4.1
 Release:	1
