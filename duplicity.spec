@@ -22,7 +22,7 @@ local) file server. In theory many remote backends are possible; right
 now only the local or ssh/scp backend is written. Because duplicity
 uses librsync, the incremental archives are space efficient and only
 record the parts of files that have changed since the last backup.
-Currently duplicity supports deleted files, full unix permissions,
+Currently duplicity supports deleted files, full Unix permissions,
 directories, symbolic links, fifos, etc., but not hard links.
 
 %description -l pl.UTF-8
