@@ -1,12 +1,12 @@
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	0.5.06
-Release:	2
+Version:	0.5.08
+Release:	1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	http://savannah.nongnu.org/download/duplicity/%{name}-%{version}.tar.gz
-# Source0-md5:	7363d8f1be770e0296c78badbffaa4b4
+# Source0-md5:	84da35fa00eb4741e5ab5bade56c40cf
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	librsync-devel >= 0.9.6
 BuildRequires:	python-devel >= 2.2.1
@@ -53,12 +53,12 @@ python setup.py install --optimize=2 --root=$RPM_BUILD_ROOT
 # Remove *.py files. We don't package them.
 find $RPM_BUILD_ROOT%{py_sitedir}/%{name} -type f -name '*.py' -print0 | xargs -0 rm -f
 
-#%%find_lang %{name}
+# Remove /usr/share/locale/io/LC_MESSAGES. It's not yet supported.
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-#%%files -f %{name}.lang
 %files
 %defattr(644,root,root,755)
 %doc CHANGELOG README
@@ -69,3 +69,6 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/duplicity/*.py[co]
 %{py_sitedir}/duplicity/backends/*.py[co]
 %attr(755,root,root) %{py_sitedir}/duplicity/*.so
+%if "%{pld_release}" != "ac"
+%{py_sitedir}/duplicity-*.egg-info
+%endif
