@@ -13,7 +13,7 @@ BuildRequires:	python-devel >= 2.2.1
 Requires:	gnupg
 Requires:	python >= 2.2
 Requires:	python-modules
-Suggests:	python-gnupg >= 0.3.2
+Requires:	python-gnupg >= 0.3.2
 Suggests:	python-pexpect >= 2.1
 Suggests:	python-boto >= 0.9d
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
