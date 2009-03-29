@@ -1,12 +1,12 @@
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	0.5.09
-Release:	2
+Version:	0.5.13
+Release:	1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	http://savannah.nongnu.org/download/duplicity/%{name}-%{version}.tar.gz
-# Source0-md5:	b48c390825fba8ddc15bef4400f8e4f1
+# Source0-md5:	c87278302d297a4ce9681aedb0ef8b52
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	librsync-devel >= 0.9.6
 BuildRequires:	python-devel >= 2.2.1
