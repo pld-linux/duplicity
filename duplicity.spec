@@ -1,12 +1,12 @@
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	0.5.20
+Version:	0.6.06
 Release:	1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	http://savannah.nongnu.org/download/duplicity/%{name}-%{version}.tar.gz
-# Source0-md5:	90ff195d27127c5e1fad7bd384990ef6
+# Source0-md5:	abbbbcde4af24efffbc218583d581453
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	librsync-devel >= 0.9.6
 BuildRequires:	python-devel >= 2.2.1
@@ -57,10 +57,12 @@ find $RPM_BUILD_ROOT%{py_sitedir}/%{name} -type f -name '*.py' -print0 | xargs -
 # Remove /usr/share/locale/io/LC_MESSAGES. It's not yet supported.
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc CHANGELOG README
 %attr(755,root,root) %{_bindir}/*
