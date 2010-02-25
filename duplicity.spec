@@ -10,13 +10,15 @@ Source0:	http://savannah.nongnu.org/download/duplicity/%{name}-%{version}.tar.gz
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	librsync-devel >= 0.9.6
 BuildRequires:	python-devel >= 2.2.1
+BuildRequires:	python-modules
+BuildRequires:	rpm-pythonprov
 Requires:	gnupg
 Requires:	python >= 2.2
-Requires:	python-modules
 Requires:	python-gnupg >= 0.3.2
+Requires:	python-modules
 Suggests:	ncftp
-Suggests:	python-pexpect >= 2.1
 Suggests:	python-boto >= 0.9d
+Suggests:	python-pexpect >= 2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
