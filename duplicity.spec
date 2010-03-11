@@ -1,8 +1,10 @@
+# TODO:
+# UnsupportedBackendScheme: scheme not supported in url: file:///backup/duplicity/proba
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
 Version:	0.6.08
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	http://savannah.nongnu.org/download/duplicity/%{name}-%{version}.tar.gz
