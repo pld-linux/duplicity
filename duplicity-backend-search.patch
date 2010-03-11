@@ -1,0 +1,13 @@
+--- duplicity-0.6.08a-orig/src/backend.py	2010-03-11 15:08:30.000000000 +0100
++++ duplicity-0.6.08a/src/backend.py	2010-03-11 17:13:41.195614937 +0100
+@@ -68,8 +68,8 @@
+ 
+     files = os.listdir(path)
+     for fn in files:
+-        if fn.endswith("backend.py"):
+-            fn = fn[:-3]
++        if fn.endswith("backend.pyc"):
++            fn = fn[:-4]
+             imp = "duplicity.backends.%s" % (fn,)
+             try:
+                 __import__(imp)
