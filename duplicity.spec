@@ -1,15 +1,15 @@
-# TODO:
-# UnsupportedBackendScheme: scheme not supported in url: file:///backup/duplicity/proba
+%define		mainver 0.6
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	0.6.08
+Version:	%{mainver}.08a
 Release:	2
 License:	GPL
 Group:		Applications/Archiving
-Source0:	http://savannah.nongnu.org/download/duplicity/%{name}-%{version}.tar.gz
-# Source0-md5:	31b9049fb553b17ac63883f3808f0a15
+Source0:	http://code.launchpad.net/duplicity/%{mainver}-series/%{version}/+download/%{name}-%{version}.tar.gz
+# Source0-md5:	e48eef6e2a28edca4d2b1dfddf855e0a
 Patch0:		%{name}-pexpect.patch
+Patch1:		%{name}-backend-search.patch
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	librsync-devel >= 0.9.6
 BuildRequires:	python-devel >= 2.2.1
@@ -49,6 +49,7 @@ nie twarde dowiązania.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 python setup.py build
