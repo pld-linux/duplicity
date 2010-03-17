@@ -2,18 +2,19 @@
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	%{mainver}.08a
-Release:	2
+Version:	%{mainver}.08b
+Release:	1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	http://code.launchpad.net/duplicity/%{mainver}-series/%{version}/+download/%{name}-%{version}.tar.gz
-# Source0-md5:	e48eef6e2a28edca4d2b1dfddf855e0a
+# Source0-md5:	f4f4182ab71aa1de80c047bf1e4c7a04
 Patch0:		%{name}-pexpect.patch
 Patch1:		%{name}-backend-search.patch
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	librsync-devel >= 0.9.6
 BuildRequires:	python-devel >= 2.2.1
 BuildRequires:	python-modules
+BuildRequires:	python-pexpect >= 2.1
 BuildRequires:	rpm-pythonprov
 Requires:	gnupg
 Requires:	python >= 2.2
@@ -21,7 +22,6 @@ Requires:	python-gnupg >= 0.3.2
 Requires:	python-modules
 Suggests:	ncftp
 Suggests:	python-boto >= 0.9d
-Suggests:	python-pexpect >= 2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,7 +61,7 @@ python setup.py install --optimize=2 --root=$RPM_BUILD_ROOT
 # Remove *.py files. We don't package them.
 find $RPM_BUILD_ROOT%{py_sitedir}/%{name} -type f -name '*.py' -print0 | xargs -0 rm -f
 
-# Remove /usr/share/locale/io/LC_MESSAGES. It's not yet supported.
+# Remove %{_datadir}/locale/io/LC_MESSAGES. It's not yet supported.
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
 
 %find_lang %{name}
