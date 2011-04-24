@@ -2,24 +2,25 @@
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	%{mainver}.10
+Version:	%{mainver}.13
 Release:	1
-License:	GPL
+License:	GPL v2
 Group:		Applications/Archiving
 Source0:	http://code.launchpad.net/duplicity/%{mainver}-series/%{version}/+download/%{name}-%{version}.tar.gz
-# Source0-md5:	8878d3b63fcba1b7233e11c5829b969c
+# Source0-md5:	b3d627f35fc527b00121925840d5cca7
 Patch0:		%{name}-pexpect.patch
 Patch1:		%{name}-backend-search.patch
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	librsync-devel >= 0.9.6
-BuildRequires:	python-devel >= 2.2.1
+BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	python-modules
 BuildRequires:	rpm-pythonprov
 Requires:	gnupg
-Requires:	python >= 2.2
+Requires:	python >= 1:2.3
 Requires:	python-gnupg >= 0.3.2
 Requires:	python-modules
 Requires:	python-pexpect >= 2.1
+Suggests:	lftp
 Suggests:	ncftp
 Suggests:	python-boto >= 0.9d
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,17 +53,19 @@ nie twarde dowiązania.
 %patch1 -p1
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-python setup.py install --optimize=2 --root=$RPM_BUILD_ROOT
 
-# Remove *.py files. We don't package them.
-find $RPM_BUILD_ROOT%{py_sitedir}/%{name} -type f -name '*.py' -print0 | xargs -0 rm -f
+%{__python} setup.py install \
+	--optimize=2 \
+	--root=$RPM_BUILD_ROOT
 
 # Remove %{_datadir}/locale/io/LC_MESSAGES. It's not yet supported.
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
+
+%py_postclean
 
 %find_lang %{name}
 
