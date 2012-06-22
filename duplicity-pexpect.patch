@@ -1,7 +1,6 @@
-diff -burNp duplicity-0.6.08/src/backends/sshbackend.py duplicity-0.6.08-dud/src/backends/sshbackend.py
---- duplicity-0.6.08/src/backends/sshbackend.py	2010-03-07 21:56:35.000000000 +0100
-+++ duplicity-0.6.08-dud/src/backends/sshbackend.py	2010-03-11 16:51:58.525987063 +0100
-@@ -31,7 +31,7 @@ import time
+--- duplicity-0.6.19/duplicity/backends/_ssh_pexpect.py.orig	2012-06-22 22:04:38.879374844 +0200
++++ duplicity-0.6.19/duplicity/backends/_ssh_pexpect.py	2012-06-22 22:04:47.079330420 +0200
+@@ -32,7 +32,7 @@ import os
  import duplicity.backend
  from duplicity import globals
  from duplicity import log
@@ -9,4 +8,4 @@ diff -burNp duplicity-0.6.08/src/backends/sshbackend.py duplicity-0.6.08-dud/src
 +import pexpect
  from duplicity.errors import * #@UnusedWildImport
  
- class SSHBackend(duplicity.backend.Backend):
+ class SSHPExpectBackend(duplicity.backend.Backend):

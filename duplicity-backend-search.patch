@@ -1,5 +1,5 @@
---- duplicity-0.6.08a-orig/src/backend.py	2010-03-11 15:08:30.000000000 +0100
-+++ duplicity-0.6.08a/src/backend.py	2010-03-11 17:13:41.195614937 +0100
+--- duplicity-0.6.08a-orig/duplicity/backend.py	2010-03-11 15:08:30.000000000 +0100
++++ duplicity-0.6.08a/duplicity/backend.py	2010-03-11 17:13:41.195614937 +0100
 @@ -68,8 +68,8 @@
  
      files = os.listdir(path)
