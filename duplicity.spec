@@ -65,6 +65,8 @@ rm -rf $RPM_BUILD_ROOT
 # Remove %{_datadir}/locale/io/LC_MESSAGES. It's not yet supported.
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
 
+%{__rm} -rf $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+
 %py_postclean
 
 %find_lang %{name}
