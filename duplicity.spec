@@ -2,12 +2,12 @@
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	%{mainver}.24
+Version:	%{mainver}.26
 Release:	1
 License:	GPL v2
 Group:		Applications/Archiving
 Source0:	http://code.launchpad.net/duplicity/%{mainver}-series/%{version}/+download/%{name}-%{version}.tar.gz
-# Source0-md5:	5d4e9329a6d793880909d18b0736ff06
+# Source0-md5:	7c85e63f738761456b43feaa5931ba9a
 Patch0:		%{name}-pexpect.patch
 Patch1:		%{name}-backend-search.patch
 URL:		http://www.nongnu.org/duplicity/
@@ -18,6 +18,7 @@ BuildRequires:	rpm-pythonprov
 Requires:	gnupg
 Requires:	python >= 1:2.3
 Requires:	python-gnupg >= 0.3.2
+Requires:	python-lockfile
 Requires:	python-modules
 Requires:	python-pexpect >= 2.1
 Suggests:	lftp
