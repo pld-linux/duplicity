@@ -54,14 +54,12 @@ nie twarde dowiązania.
 %patch1 -p1
 
 %build
-%{__python} setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__python} setup.py install \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+%py_install
 
 # Remove %{_datadir}/locale/io/LC_MESSAGES. It's not yet supported.
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
