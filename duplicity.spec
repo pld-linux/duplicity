@@ -11,6 +11,7 @@ Source0:	http://code.launchpad.net/duplicity/%{mainver}-series/%{version}/+downl
 Patch0:		%{name}-pexpect.patch
 Patch1:		%{name}-backend-search.patch
 URL:		http://www.nongnu.org/duplicity/
+BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	librsync-devel >= 0.9.6
 BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	python-modules
