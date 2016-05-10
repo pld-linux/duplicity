@@ -1,15 +1,14 @@
-%define		mainver 0.6
+%define		mainver 0.7
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	%{mainver}.26
+Version:	%{mainver}.07.1
 Release:	1
 License:	GPL v2
 Group:		Applications/Archiving
 Source0:	http://code.launchpad.net/duplicity/%{mainver}-series/%{version}/+download/%{name}-%{version}.tar.gz
-# Source0-md5:	7c85e63f738761456b43feaa5931ba9a
-Patch0:		%{name}-pexpect.patch
-Patch1:		%{name}-backend-search.patch
+# Source0-md5:	4f90bcd93f5e6ac1aa3f4519b28f5b89
+Patch0:		%{name}-backend-search.patch
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	librsync-devel >= 0.9.6
@@ -52,7 +51,6 @@ nie twarde dowiązania.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %py_build
