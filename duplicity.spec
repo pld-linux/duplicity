@@ -2,12 +2,12 @@
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	%{mainver}.07.1
+Version:	%{mainver}.10
 Release:	1
 License:	GPL v2
 Group:		Applications/Archiving
 Source0:	http://code.launchpad.net/duplicity/%{mainver}-series/%{version}/+download/%{name}-%{version}.tar.gz
-# Source0-md5:	4f90bcd93f5e6ac1aa3f4519b28f5b89
+# Source0-md5:	21144321390ac983dde6b45fa21cc546
 Patch0:		%{name}-backend-search.patch
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	rpmbuild(macros) >= 1.710
@@ -79,8 +79,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*.1*
 %dir %{py_sitedir}/duplicity
 %dir %{py_sitedir}/duplicity/backends
+%dir %{py_sitedir}/duplicity/backends/pyrax_identity
 %{py_sitedir}/duplicity/*.py[co]
 %{py_sitedir}/duplicity/backends/*.py[co]
+%{py_sitedir}/duplicity/backends/pyrax_identity/*.py[co]
 %attr(755,root,root) %{py_sitedir}/duplicity/*.so
 %if "%{pld_release}" != "ac"
 %{py_sitedir}/duplicity-*.egg-info
