@@ -17,7 +17,6 @@ BuildRequires:	python-modules
 BuildRequires:	rpm-pythonprov
 Requires:	gnupg
 Requires:	python >= 1:2.3
-Requires:	python-gnupg >= 0.3.2
 Requires:	python-lockfile
 Requires:	python-modules
 Requires:	python-pexpect >= 2.1
