@@ -1,8 +1,9 @@
---- duplicity-0.6.08a-orig/duplicity/backend.py	2010-03-11 15:08:30.000000000 +0100
-+++ duplicity-0.6.08a/duplicity/backend.py	2010-03-11 17:13:41.195614937 +0100
-@@ -68,8 +68,8 @@
- 
+diff -urNp -x '*.orig' duplicity-0.7.18.2.org/duplicity/backend.py duplicity-0.7.18.2/duplicity/backend.py
+--- duplicity-0.7.18.2.org/duplicity/backend.py	2017-11-23 14:07:34.000000000 +0100
++++ duplicity-0.7.18.2/duplicity/backend.py	2021-03-04 22:40:10.513136774 +0100
+@@ -91,8 +91,8 @@ def import_backends():
      files = os.listdir(path)
+     files.sort()
      for fn in files:
 -        if fn.endswith("backend.py"):
 -            fn = fn[:-3]
