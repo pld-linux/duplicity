@@ -1,0 +1,76 @@
+--- duplicity-rel.2.1.1/po/LINGUAS~	2023-09-02 17:53:58.000000000 +0200
++++ duplicity-rel.2.1.1/po/LINGUAS	2023-09-21 15:32:48.304720718 +0200
+@@ -1,46 +1,38 @@
+-af_ZA
+-ar_SA
+-ca_ES
+-cs_CZ
+-da_DK
++af
++ar
++ca
++cs
++da
+ de_AT
+-de_DE
+-el_GR
++de
++el
+ en_AU
+ en_GB
+-en_PR
+-en_US
++en
+ es_EM
+-es_ES
++es
+ es_MX
+ es_PR
+-es_US
+-fi_FI
+-fr_FR
+-he_IL
+-hu_HU
+-it_IT
+-ja_JP
+-ko_KR
++fi
++fr
++he
++hu
++it
++ja
++ko
+ nl_BE
+-nl_NL
+-nl_SR
+-no_NO
+-pl_PL
++nl
++nb
++pl
+ pt_BR
+-pt_PT
+-ro_RO
+-ru_BY
+-ru_MD
+-ru_RU
+-ru_UA
+-sr_SP
+-sv_SE
+-tr_TR
+-uk_UA
+-vi_VN
++pt
++ro
++ru
++sr
++sv
++tr
++uk
++vi
+ zh_CN
+ zh_HK
+-zh_MO
+-zh_SG
+ zh_TW

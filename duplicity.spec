@@ -2,17 +2,17 @@ Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
 Version:	2.1.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Archiving
 Source0:	https://gitlab.com/duplicity/duplicity/-/archive/rel.%{version}/%{name}-rel.%{version}.tar.bz2
 # Source0-md5:	7064f8a6b176a8d095406509ddf5451a
 URL:		http://www.nongnu.org/duplicity/
-BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	librsync-devel >= 0.9.6
 BuildRequires:	python3-devel
 BuildRequires:	python3-modules
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.710
 Requires:	gnupg
 Requires:	python3
 Requires:	python3-lockfile
@@ -51,6 +51,18 @@ nie twarde dowiązania.
 %{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+python3(\s|$),#!%{__python3}\1,' \
       bin/duplicity
 
+%{__rm} po/{en_PR,es_EM,es_US,nl_SR,ru_BY,ru_MD,ru_UA,zh_MO,zh_SG}.po
+
+cd po
+for f in *.po ; do
+	case $(basename $f .po) in
+	de_AT|en_AU|en_GB|es_MX|es_PR|nl_BE|pt_BR|zh_CN|zh_HK|zh_TW) continue
+	;;
+	*) %{__mv} $f ${f%%_*}.po
+	;;
+	esac
+done
+
 %build
 %py3_build
 
@@ -59,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %py3_install
 
-%{__rm} -rf $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 %find_lang %{name}
 
