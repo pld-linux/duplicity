@@ -1,28 +1,26 @@
-%define		mainver 0.7
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	%{mainver}.18.2
-Release:	3
+Version:	2.1.1
+Release:	1
 License:	GPL v2
 Group:		Applications/Archiving
-Source0:	http://code.launchpad.net/duplicity/%{mainver}-series/%{version}/+download/%{name}-%{version}.tar.gz
-# Source0-md5:	a5d16cc0a95f0fd2bb309cd0b8015945
-Patch0:		%{name}-backend-search.patch
+Source0:	https://gitlab.com/duplicity/duplicity/-/archive/rel.%{version}/%{name}-rel.%{version}.tar.bz2
+# Source0-md5:	7064f8a6b176a8d095406509ddf5451a
 URL:		http://www.nongnu.org/duplicity/
 BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	librsync-devel >= 0.9.6
-BuildRequires:	python-devel >= 1:2.3
-BuildRequires:	python-modules
+BuildRequires:	python3-devel
+BuildRequires:	python3-modules
 BuildRequires:	rpm-pythonprov
 Requires:	gnupg
-Requires:	python >= 1:2.3
-Requires:	python-lockfile
-Requires:	python-modules
-Requires:	python-pexpect >= 2.1
+Requires:	python3
+Requires:	python3-lockfile
+Requires:	python3-modules
+Requires:	python3-pexpect >= 2.1
 Suggests:	lftp
 Suggests:	ncftp
-Suggests:	python-boto >= 0.9d
+Suggests:	python3-boto >= 0.9d
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,27 +46,20 @@ uprawnień, katalogi, dowiązania symboliczne, nazwane potoki itp. - ale
 nie twarde dowiązania.
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n %{name}-rel.%{version}
 
-%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+python2(\s|$),#!%{__python}\1,' \
-      bin/duplicity \
-      bin/rdiffdir \
+%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+python3(\s|$),#!%{__python3}\1,' \
+      bin/duplicity
 
 %build
-%py_build
+%py3_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%py_install
-
-# Remove %{_datadir}/locale/io/LC_MESSAGES. It's not yet supported.
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
+%py3_install
 
 %{__rm} -rf $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-
-%py_postclean
 
 %find_lang %{name}
 
@@ -77,16 +68,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc CHANGELOG README
+%doc CHANGELOG.md README*.md
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*.1*
-%dir %{py_sitedir}/duplicity
-%dir %{py_sitedir}/duplicity/backends
-%dir %{py_sitedir}/duplicity/backends/pyrax_identity
-%{py_sitedir}/duplicity/*.py[co]
-%{py_sitedir}/duplicity/backends/*.py[co]
-%{py_sitedir}/duplicity/backends/pyrax_identity/*.py[co]
-%attr(755,root,root) %{py_sitedir}/duplicity/*.so
-%if "%{pld_release}" != "ac"
-%{py_sitedir}/duplicity-*.egg-info
-%endif
+%dir %{py3_sitedir}/duplicity
+%dir %{py3_sitedir}/duplicity/backends
+%dir %{py3_sitedir}/duplicity/backends/pyrax_identity
+%{py3_sitedir}/duplicity/__pycache__
+%{py3_sitedir}/duplicity/*.py
+%{py3_sitedir}/duplicity/backends/__pycache__
+%{py3_sitedir}/duplicity/backends/*.py
+%{py3_sitedir}/duplicity/backends/pyrax_identity/__pycache__
+%{py3_sitedir}/duplicity/backends/pyrax_identity/*.py
+%attr(755,root,root) %{py3_sitedir}/duplicity/*.so
+%{py3_sitedir}/duplicity-*.egg-info
