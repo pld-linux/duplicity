@@ -1,26 +1,30 @@
 Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
-Version:	2.1.1
-Release:	3
+Version:	3.2.2
+Release:	1
 License:	GPL v2
 Group:		Applications/Archiving
 Source0:	https://gitlab.com/duplicity/duplicity/-/archive/rel.%{version}/%{name}-rel.%{version}.tar.bz2
-# Source0-md5:	7064f8a6b176a8d095406509ddf5451a
+# Source0-md5:	6b12f16a871c8a89d1a072e4d454389e
 URL:		http://www.nongnu.org/duplicity/
+BuildRequires:	gettext-tools
 BuildRequires:	librsync-devel >= 0.9.6
-BuildRequires:	python3-devel
-BuildRequires:	python3-modules
+BuildRequires:	python3-build >= 1.1
+BuildRequires:	python3-devel >= 1:3.10
+BuildRequires:	python3-installer
+BuildRequires:	python3-modules >= 1:3.10
+BuildRequires:	python3-setuptools >= 1:78.1.0
+BuildRequires:	python3-setuptools-gettext >= 0.1.18
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
+BuildRequires:	rpmbuild(macros) >= 2.044
 Requires:	gnupg
 Requires:	python3
-Requires:	python3-lockfile
-Requires:	python3-modules
+Requires:	python3-modules >= 1:3.10
 Requires:	python3-pexpect >= 2.1
 Suggests:	lftp
 Suggests:	ncftp
-Suggests:	python3-boto >= 0.9d
+Suggests:	python3-boto3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,10 +52,13 @@ nie twarde dowiązania.
 %prep
 %setup -q -n %{name}-rel.%{version}
 
-%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+python3(\s|$),#!%{__python3}\1,' \
-      bin/duplicity
+# backend modules are optional and imported on demand; keep them out of
+# the generated Requires (several are not packaged in PLD)
+%{__sed} -i -e '/^##### backend libraries/,$d' requirements.txt
 
 %{__rm} po/{en_PR,es_EM,es_US,nl_SR,ru_BY,ru_MD,ru_UA,zh_MO,zh_SG}.po
+# catalogs without a single translated message
+%{__rm} po/{af_ZA,ca_ES,en_US,sr_SP,vi_VN,zh_HK,zh_TW}.po
 
 cd po
 for f in *.po ; do
@@ -64,14 +71,15 @@ for f in *.po ; do
 done
 
 %build
-%py3_build
+%py3_build_pyproject
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%py3_install
+%py3_install_pyproject
 
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/duplicity/_librsyncmodule.c
 
 %find_lang %{name}
 
@@ -93,4 +101,4 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitedir}/duplicity/backends/pyrax_identity/__pycache__
 %{py3_sitedir}/duplicity/backends/pyrax_identity/*.py
 %attr(755,root,root) %{py3_sitedir}/duplicity/*.so
-%{py3_sitedir}/duplicity-*.egg-info
+%{py3_sitedir}/duplicity-%{version}.dist-info
