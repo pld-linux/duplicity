@@ -2,7 +2,7 @@ Summary:	Untrusted/encrypted backup using rsync algorithm
 Summary(pl.UTF-8):	Wykonywanie szyfrowanych kopii zapasowych przy użyciu algorytmu rsync
 Name:		duplicity
 Version:	3.2.2
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Archiving
 #Source0Download: https://gitlab.com/duplicity/duplicity/-/tags
@@ -58,7 +58,7 @@ nie twarde dowiązania.
 %{__sed} -i -e '/^##### backend libraries/,$d' requirements.txt
 
 # not supported by glibc (as of 2.44)
-%{__rm} po/{en_PR,es_EM,es_US,nl_SR,ru_BY,ru_MD,ru_UA,zh_MO,zh_SG}.po
+%{__rm} po/{en_PR,es_EM,nl_SR,ru_BY,ru_MD,zh_MO,zh_SG}.po
 # catalogs without a single translated message
 %{__rm} po/{af_ZA,ca_ES,en_US,sr_SP,vi_VN,zh_HK,zh_TW}.po
 # unify name
@@ -67,7 +67,7 @@ nie twarde dowiązania.
 cd po
 for f in *.po ; do
 	case $(basename $f .po) in
-	de_AT|en_AU|en_GB|es_MX|es_PR|nl_BE|pt_BR|zh_CN|zh_HK|zh_TW) continue
+	de_AT|en_AU|en_GB|es_MX|es_PR|es_US|nl_BE|pt_BR|ru_UA|zh_CN|zh_HK|zh_TW) continue
 	;;
 	*) %{__mv} $f ${f%%_*}.po
 	;;
