@@ -5,6 +5,7 @@ Version:	3.2.2
 Release:	1
 License:	GPL v2
 Group:		Applications/Archiving
+#Source0Download: https://gitlab.com/duplicity/duplicity/-/tags
 Source0:	https://gitlab.com/duplicity/duplicity/-/archive/rel.%{version}/%{name}-rel.%{version}.tar.bz2
 # Source0-md5:	6b12f16a871c8a89d1a072e4d454389e
 URL:		http://www.nongnu.org/duplicity/
@@ -19,7 +20,7 @@ BuildRequires:	python3-setuptools-gettext >= 0.1.18
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.044
 Requires:	gnupg
-Requires:	python3
+Requires:	python3 >= 1:3.10
 Requires:	python3-modules >= 1:3.10
 Requires:	python3-pexpect >= 2.1
 Suggests:	lftp
@@ -89,8 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc CHANGELOG.md README*.md
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*.1*
+%attr(755,root,root) %{_bindir}/duplicity
+%{_mandir}/man1/duplicity.1*
 %dir %{py3_sitedir}/duplicity
 %dir %{py3_sitedir}/duplicity/backends
 %dir %{py3_sitedir}/duplicity/backends/pyrax_identity
@@ -100,5 +101,5 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitedir}/duplicity/backends/*.py
 %{py3_sitedir}/duplicity/backends/pyrax_identity/__pycache__
 %{py3_sitedir}/duplicity/backends/pyrax_identity/*.py
-%attr(755,root,root) %{py3_sitedir}/duplicity/*.so
+%{py3_sitedir}/duplicity/*.so
 %{py3_sitedir}/duplicity-%{version}.dist-info
