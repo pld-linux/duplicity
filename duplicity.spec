@@ -57,9 +57,12 @@ nie twarde dowiązania.
 # the generated Requires (several are not packaged in PLD)
 %{__sed} -i -e '/^##### backend libraries/,$d' requirements.txt
 
+# not supported by glibc (as of 2.44)
 %{__rm} po/{en_PR,es_EM,es_US,nl_SR,ru_BY,ru_MD,ru_UA,zh_MO,zh_SG}.po
 # catalogs without a single translated message
 %{__rm} po/{af_ZA,ca_ES,en_US,sr_SP,vi_VN,zh_HK,zh_TW}.po
+# unify name
+%{__mv} po/{no_NO,nb_NO}.po
 
 cd po
 for f in *.po ; do
